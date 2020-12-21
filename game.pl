@@ -1,3 +1,4 @@
+:-use_module(library(clpfd)).
 
 :-ensure_loaded('utils.pl').
 
@@ -21,7 +22,7 @@ mainMenu:-
 	printMainMenu,
     getChar(Input),
 	(
-        Input = '1' -> gameModeMenu;
+        Input = '1' -> startGame;
         Input = '2' -> howToPlay, play; % entra em howToPlay e volta para play.
         Input = '3';
 
@@ -30,17 +31,21 @@ mainMenu:-
         play
     ).
 
-gameModeMenu:-
-    write('YES').
+startGame:-
+    clearScreen,
+	printHeader,
+    nl,nl,
+    write('2 x 42 = 84'),nl.
 
 % imprime as instruções do jogo
 howToPlay:-
 	clearScreen,
-	write('=========================================================================================================================================='), nl,
-	write('=     :::: How To Play ::::                                   ='), nl,
-	write('=========================================================================================================================================='), nl,
-	write('='), nl,
-	write('=   Definitions:'), nl,
-	write('=   '), nl,
+    printHeader,
+    nl,nl,
+	write('                                                         :::: How To Play ::::'), nl,
+	nl,nl,
+    write('=========================================================================================================================================='), nl,nl,
+	write('    Insert a digit into each circle to make the multiplication true. Similarly colored circles should contain the same digit.'), nl,
+	write('    Each puzzle has a unique solution.'), nl,nl,
 	write('=========================================================================================================================================='), nl,
 	pressEnterToContinue, nl.
