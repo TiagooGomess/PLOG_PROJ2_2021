@@ -24,9 +24,9 @@ askNumberColors(NumberColors):-
     (
         (
             nl,nl,
-            write(' --> How many digits the number contains? '),
-            getInt(Len),
-            number(Len),
+            write(' --> How many digits the number contains? '),nl,
+            read(Len),
+            integer(Len),
             Len > 0,
             Len =< 9,
             askNumberColors(NumberColors,[],Len)
@@ -36,13 +36,20 @@ askNumberColors(NumberColors):-
 askNumberColors(NumberColors,NumberColors,0).
 % pedimos a representação do número dígito a dígito
 askNumberColors(NC,NumberColors,Len):-
-    Len > 0,
-    Len1 is Len - 1,
-    nl,nl,
-    write('Please enter the color of the digit: '),
-    getChar(Color),
-    append(NumberColors,[Color],NumberColors1),
-    askNumberColors(NC,NumberColors1,Len1).
+    repeat,
+    (
+        (
+            Len > 0,
+            Len1 is Len - 1,
+            nl,nl,
+            write('Please enter the color of the digit: '),nl,
+            read(Color),
+            var(Color),
+            append(NumberColors,[Color],NumberColors1),
+            askNumberColors(NC,NumberColors1,Len1)
+        );
+        nl,nl,write('Please enter an uppercase string'),nl,nl,fail
+    ).
 
 % puzzle exemplo
 crypto:-
