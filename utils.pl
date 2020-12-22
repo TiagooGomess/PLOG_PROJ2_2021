@@ -18,7 +18,7 @@ pressEnterToContinue:-
 	write('Press <Enter> to continue.'), nl,
 	get_char(_), !.
 
-% imprime o cabeçalho com o nome do jogo
+% imprime o cabeçalho com o nome do puzzle
 printHeader:-
     write('=========================================================================================================================================='), nl,
     write('   _____                          _                      _____                       _                  _    '), nl,

@@ -1,9 +1,6 @@
-:-use_module(library(clpfd)).
 
 :-ensure_loaded('utils.pl').
-
-play:-
-    mainMenu.
+:-ensure_loaded('puzzle.pl').
 
 % imprime o menu principal
 printMainMenu:-
@@ -35,7 +32,7 @@ startGame:-
     clearScreen,
 	printHeader,
     nl,nl,
-    write('2 x 42 = 84'),nl.
+    crypto,nl.
 
 % imprime as instruções do jogo
 howToPlay:-
