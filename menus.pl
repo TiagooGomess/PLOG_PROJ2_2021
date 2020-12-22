@@ -1,4 +1,3 @@
-
 :-ensure_loaded('utils.pl').
 :-ensure_loaded('puzzle.pl').
 
@@ -32,6 +31,8 @@ startGame:-
     clearScreen,
 	printHeader,
     nl,nl,
+    askPuzzle(Puzzle),nl,nl,
+    write('The puzzle is '),write(Puzzle),nl,nl,
     crypto2,nl,nl;
     write('There is no solution to this puzzle!'),nl,nl.
 
