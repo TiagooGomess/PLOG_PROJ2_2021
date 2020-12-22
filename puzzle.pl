@@ -8,21 +8,32 @@
 % - o terceiro é o resultado;
 % por exemplo, para o puzzle R x GR = BG, Puzzle seria [[R],[G,R],[B,G]]
 askPuzzle(Puzzle):-
-    nl,nl,
-    write('Please enter the first number colors: '),
-    askNumberColors(FirstNumberColors),nl,nl,
-    write('Please enter the second number colors: '),
-    askNumberColors(SecondtNumberColors),nl,nl,
-    write('Please enter the result number colors: '),
-    askNumberColors(ResultNumberColors),nl,nl,
+    nl,
+    write('    ---> Please enter the first number colors: <---'),
+    askNumberColors(FirstNumberColors),nl,clearScreen,printHeader,nl,
+    write('    ---> Please enter the second number colors: <---'),
+    askNumberColors(SecondtNumberColors),nl,clearScreen,printHeader,nl,
+    write('    ---> Please enter the result number colors: <---'),
+    askNumberColors(ResultNumberColors),nl,clearScreen,printHeader,nl,
     Puzzle = [FirstNumberColors,SecondtNumberColors,ResultNumberColors].
 
 % pede ao jogador um número, em que os digitos desse número são caracteres que representam cores
 askNumberColors(NumberColors):-
-    nl,nl,
-    write('How many digits the number contains? '),
-    getInt(Len),
-    askNumberColors(NumberColors,[],Len).
+    repeat,
+    (
+        (
+            nl,nl,
+            write(' --> How many digits the number contains? '),
+            getInt(Len),
+            number(Len),
+            Len > 0,
+            Len =< 9,
+            askNumberColors(NumberColors,[],Len)
+        );
+        nl,nl,write('Please enter a number between 1 and 9'),nl,nl,fail
+    ).
+    
+
 askNumberColors(NumberColors,NumberColors,0).
 askNumberColors(NC,NumberColors,Len):-
     Len > 0,
