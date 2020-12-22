@@ -4,12 +4,6 @@ getChar(Input):-
 	get_char(Input),nl,
 	get_char(_).
 
-% converte de char para inteiro
-getInt(Input):-
-    get_code(Aux),
-    get_code(_),
-	Input is Aux - 48.
-
 % limpa o ecrã
 clearScreen:-write('\e[2J').
 
