@@ -32,7 +32,8 @@ startGame:-
     clearScreen,
 	printHeader,
     nl,nl,
-    crypto,nl.
+    crypto2,nl,nl;
+    write('There is no solution to this puzzle!'),nl,nl.
 
 % imprime as instruções do jogo
 howToPlay:-
