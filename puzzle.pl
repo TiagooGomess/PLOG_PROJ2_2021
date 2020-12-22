@@ -1,4 +1,5 @@
 :-use_module(library(clpfd)).
+:-use_module(library(lists)).
 
 :-ensure_loaded('utils.pl').
 
@@ -29,7 +30,7 @@ askNumberColors(NumberColors):-
             integer(Len),
             Len > 0,
             Len =< 9,
-            askNumberColors(NumberColors,[],Len)
+            askNumberColors(NumberColors,[],Len),!
         );
         nl,nl,write('Please enter a number between 1 and 9'),nl,nl,fail
     ).
@@ -46,7 +47,7 @@ askNumberColors(NC,NumberColors,Len):-
             read(Color),
             var(Color),
             append(NumberColors,[Color],NumberColors1),
-            askNumberColors(NC,NumberColors1,Len1)
+            askNumberColors(NC,NumberColors1,Len1),!
         );
         nl,nl,write('Please enter an uppercase string'),nl,nl,fail
     ).
@@ -55,6 +56,7 @@ askNumberColors(NC,NumberColors,Len):-
 crypto:-
     Vars = [R,G,B],
     domain(Vars,0,9),
+    nl,nl,write(Vars),nl,nl,
     all_distinct(Vars),
     R * (G*10 + R) #= B*10 + G,
     labeling([],Vars),
@@ -68,3 +70,24 @@ crypto2:-
     (G*10 + B) * (G*10 + R) #= R*100 + B*10 + B,
     labeling([],Vars),
     write(Vars).
+
+solve_crypto(Puzzle,Vars):-
+    nth0(0,Puzzle,FirstNumberColors),
+    nth0(1,Puzzle,SecondtNumberColors),
+    nth0(2,Puzzle,ResultNumberColors),
+    nth0(0,FirstNumberColors,R),
+    nth0(0,SecondtNumberColors,G),
+    nth0(0,ResultNumberColors,B),
+    Vars = [R,G,B],
+    domain(Vars,0,9),
+    all_distinct(Vars),
+    R * (G*10 + R) #= B*10 + G,
+    labeling([],Vars).
+
+displaySolution(Vars):-
+    nth0(0,Vars,R),
+    nth0(1,Vars,G),
+    nth0(2,Vars,B),
+    write(R),write(' X '),write(G),write(R),
+    write(' = '),write(B),write(G).
+    

@@ -32,7 +32,7 @@ startGame:-
 	printHeader,
     askPuzzle(Puzzle),nl,
     write('The puzzle is '),write(Puzzle),nl,nl,
-    crypto2,nl,nl;
+    solve_crypto(Puzzle,Vars),nl,nl,displaySolution(Vars),nl,nl;
     write('There is no solution to this puzzle!'),nl,nl.
 
 % imprime as instruções do jogo
