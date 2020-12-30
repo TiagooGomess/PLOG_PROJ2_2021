@@ -8,19 +8,20 @@
 % - os dois primeiros elementos são as representações dos números que queremos multiplicar,
 % - o terceiro é a representação do resultado;
 % por exemplo, para o puzzle R x GR = BG, a variável Puzzle seria [[R],[G,R],[B,G]]
-askPuzzle(Puzzle):-
+askPuzzle(Puzzle,LenList):-
     nl,
     write('    ---> Please enter the first number colors: <---'),
-    askNumberColors(FirstNumberColors),nl,clearScreen,printHeader,nl,
+    askNumberColors(FirstNumberColors,Len1),nl,clearScreen,printHeader,nl,
     write('    ---> Please enter the second number colors: <---'),
-    askNumberColors(SecondtNumberColors),nl,clearScreen,printHeader,nl,
+    askNumberColors(SecondtNumberColors,Len2),nl,clearScreen,printHeader,nl,
     write('    ---> Please enter the result number colors: <---'),
-    askNumberColors(ResultNumberColors),nl,clearScreen,printHeader,nl,
-    Puzzle = [FirstNumberColors,SecondtNumberColors,ResultNumberColors].
+    askNumberColors(ResultNumberColors,Len3),nl,clearScreen,printHeader,nl,
+    Puzzle = [FirstNumberColors,SecondtNumberColors,ResultNumberColors],
+    LenList = [Len1,Len2,Len3].
 
 % pede ao jogador um número, em que os dígitos desse número são caracteres que representam cores;
 % primeiro é pedido o número de dígitos do número
-askNumberColors(NumberColors):-
+askNumberColors(NumberColors,Len):-
     repeat,
     (
         (
@@ -45,11 +46,13 @@ askNumberColors(NC,NumberColors,Len):-
             nl,nl,
             write('Please enter the color of the digit: '),nl,
             read(Color),
-            var(Color),
+            %var(Color),
+            atom(Color),
+            \+ number(Color),
             append(NumberColors,[Color],NumberColors1),
             askNumberColors(NC,NumberColors1,Len1),!
         );
-        nl,nl,write('Please enter an uppercase string'),nl,nl,fail
+        nl,nl,write('Please enter a lowercase string'),nl,nl,fail
     ).
 
 % puzzle exemplo
@@ -71,17 +74,88 @@ crypto2:-
     labeling([],Vars),
     write(Vars).
 
-solve_crypto(Puzzle,Vars):-
+
+crypto3(Restrictions,LenList,Vars):-
+    Vars = [R,G,B],
+    
+
+
+solve_crypto(Puzzle,LenList,Vars):-
+
     nth0(0,Puzzle,FirstNumberColors),
     nth0(1,Puzzle,SecondtNumberColors),
     nth0(2,Puzzle,ResultNumberColors),
-    nth0(0,FirstNumberColors,R),
-    nth0(0,SecondtNumberColors,G),
-    nth0(0,ResultNumberColors,B),
-    Vars = [R,G,B],
+
+    nth0(0,LenList,Len1),
+    nth0(1,LenList,Len2),
+    nth0(2,LenList,Len3),
+
+    (
+        Len1 == 1 -> (
+            nth0(0,FirstNumberColors,A1),
+            B1 = 0,
+            C1 = 0
+        );
+        Len1 == 2 -> (
+            nth0(0,FirstNumberColors,A1),
+            nth0(1,FirstNumberColors,B1),
+            C1 = 0
+        );
+        Len1 == 3 -> (
+            nth0(0,FirstNumberColors,A1),
+            nth0(1,FirstNumberColors,B1),
+            nth0(2,FirstNumberColors,C1)
+        )
+    ),
+
+    (
+        Len2 == 1 -> (
+            nth0(0,SecondtNumberColors,A2),
+            B2 = 0,
+            C2 = 0
+        );
+        Len2 == 2 -> (
+            nth0(0,SecondtNumberColors,A2),
+            nth0(1,SecondtNumberColors,B2),
+            C2 = 0
+        );
+        Len2 == 3 -> (
+            nth0(0,SecondtNumberColors,A2),
+            nth0(1,SecondtNumberColors,B2),
+            nth0(2,SecondtNumberColors,C2)
+        )
+    ),
+    
+    (
+        Len3 == 1 -> (
+            nth0(0,ResultNumberColors,A3),
+            B3 = 0,
+            C3 = 0
+        );
+        Len3 == 2 -> (
+            nth0(0,ResultNumberColors,A3),
+            nth0(1,ResultNumberColors,B3),
+            C3 = 0
+        );
+        Len3 == 3 -> (
+            nth0(0,ResultNumberColors,A3),
+            nth0(1,ResultNumberColors,B3),
+            nth0(2,ResultNumberColors,C3)
+        )
+    ),
+    
+
+    Vars = [A1,A2,A3,B1,B2,B3,C1,C2,C3],
     domain(Vars,0,9),
-    all_distinct(Vars),
-    R * (G*10 + R) #= B*10 + G,
+
+    write(Vars),
+
+    A1 #= A2,
+    B2 #= B3,
+
+
+    (C1 * 100 + B1*10 + C1) * (C2 * 100 + B2*10 + C2) #= (C3 * 100 + B3*10 + C3),
+
     labeling([],Vars).
 
 displaySolution(Vars):-
