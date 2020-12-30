@@ -20,7 +20,7 @@ mainMenu:-
 	printMainMenu,
     getChar(Input),
 	(
-        Input = '1' -> puzzleModesMenu;
+        Input = '1' -> startGame;
         Input = '2' -> howToPlay, play; % entra em howToPlay e volta para play.
         Input = '3';
 
@@ -42,17 +42,17 @@ printPuzzleModesMenu:-
 	write('Choose an option:'), nl.
 
 % menu dos modos do puzzle
-puzzleModesMenu:-
+puzzleModesMenu(Operand1, Operand2, Result, Variables):-
 	printPuzzleModesMenu,
     getChar(Input),
 	(
-        Input = '1' -> clearScreen, choosePuzzleMenu;
-        Input = '2' -> clearScreen, write('Comming soon!');
+        Input = '1' -> clearScreen, choosePuzzleMenu(Operand1, Operand2, Result, Variables);
+        Input = '2' -> clearScreen, askGameInputs(Operand1, Operand2, Result, Variables);
         Input = '3' -> mainMenu,!;
 
 		nl, write('Invalid input!'), nl,
 		pressEnterToContinue,nl,
-        play
+        puzzleModesMenu(Operand1, Operand2, Result, Variables)
     ).
 
 % imprime o menu dos modos do puzzle
@@ -81,23 +81,37 @@ printChoosePuzzleMenu:-
 	write('Choose an option:'), nl.
 
 % menu dos modos do puzzle
-choosePuzzleMenu:-
+choosePuzzleMenu(Operand1, Operand2, Result, Variables):-
 	printChoosePuzzleMenu,
-    getChar(Input),
-	(
-        Input = '1' -> clearScreen, write('Comming soon!');
-        Input = '2' -> clearScreen, write('Comming soon!');
-        Input = '3' -> mainMenu,!;
+    getChar(Input), % mudar para read
+	(   
+        Input = '0' -> puzzleModesMenu(Operand1, Operand2, Result, Variables),!;
+        Input = '1' -> getPuzzle(1, Operand1, Operand2, Result, Variables);
+        Input = '2' -> getPuzzle(2, Operand1, Operand2, Result, Variables);
+        Input = '3' -> getPuzzle(3, Operand1, Operand2, Result, Variables);
+        Input = '4' -> getPuzzle(4, Operand1, Operand2, Result, Variables);
+        Input = '5' -> getPuzzle(5, Operand1, Operand2, Result, Variables);
+        Input = '6' -> getPuzzle(6, Operand1, Operand2, Result, Variables);
+        Input = '7' -> getPuzzle(7, Operand1, Operand2, Result, Variables);
+        Input = '8' -> getPuzzle(8, Operand1, Operand2, Result, Variables);
+        Input = '9' -> getPuzzle(9, Operand1, Operand2, Result, Variables);
+        Input = '10' -> getPuzzle(10, Operand1, Operand2, Result, Variables);
+        Input = '11' -> getPuzzle(11, Operand1, Operand2, Result, Variables);
+        Input = '12' -> getPuzzle(12, Operand1, Operand2, Result, Variables);
+        Input = '13' -> getPuzzle(13, Operand1, Operand2, Result, Variables);
+        Input = '14' -> getPuzzle(14, Operand1, Operand2, Result, Variables);
+        Input = '15' -> getPuzzle(15, Operand1, Operand2, Result, Variables);
+        
 
 		nl, write('Invalid input!'), nl,
 		pressEnterToContinue,nl,
-        play
+        choosePuzzleMenu(Operand1, Operand2, Result, Variables)
     ).
 
 startGame:-
+    puzzleModesMenu(Operand1, Operand2, Result, Variables),
     clearScreen,
 	printHeader,
-    askGameInputs(Operand1, Operand2, Result, Variables),
     crypto_product(Operand1, Operand2, Result, Variables),
     write('Result:'),nl,
     write(Variables).
