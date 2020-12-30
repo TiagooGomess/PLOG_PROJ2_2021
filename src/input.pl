@@ -7,7 +7,7 @@ askForInput(Question, Input) :-
             nl,nl,
             write(Question),nl,
             read(Input),
-            is_list(Input),!
+            isListOfVariables(Input),!
         );
         nl,nl,write('Please enter a list of variables'),nl,nl,fail
     ).

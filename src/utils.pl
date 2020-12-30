@@ -1,3 +1,4 @@
+:-use_module(library(lists)).
 
 % se não tivessemos o get_char(_), não conseguíamos obter o próximo input
 getChar(Input):-
@@ -25,3 +26,14 @@ printHeader:-
     write('                  |___/  |_|                                                                                    '), nl,
     write('                                                                                                             '), nl,
     write('=========================================================================================================================================='), nl.
+
+% verifica se uma lista é composta apenas por variáveis
+isListOfVariables(List):-
+    is_list(List),
+    length(List, Len),
+    isListOfVariables(List, Len).
+isListOfVariables([],0).
+isListOfVariables([H|T],Len):-
+    Len1 is Len-1,
+    var(H),
+    isListOfVariables(T,Len1).

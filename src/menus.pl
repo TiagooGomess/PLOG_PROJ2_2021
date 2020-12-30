@@ -1,5 +1,5 @@
 :-ensure_loaded('utils.pl').
-:-ensure_loaded('puzzle.pl').
+:-ensure_loaded('puzzles.pl').
 :-ensure_loaded('crypto_product.pl').
 :-ensure_loaded('input.pl').
 
@@ -32,10 +32,6 @@ mainMenu:-
 startGame:-
     clearScreen,
 	printHeader,
-/*     Operand1 = [G],
-    Operand2 = [G,B],
-    Result = [B,B,R],
-    Variables = [G,B,R], */
     askGameInputs(Operand1, Operand2, Result, Variables),
     crypto_product(Operand1, Operand2, Result, Variables),
     write('Result:'),
