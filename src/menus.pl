@@ -20,9 +20,74 @@ mainMenu:-
 	printMainMenu,
     getChar(Input),
 	(
-        Input = '1' -> startGame;
+        Input = '1' -> puzzleModesMenu;
         Input = '2' -> howToPlay, play; % entra em howToPlay e volta para play.
         Input = '3';
+
+		nl, write('Invalid input!'), nl,
+		pressEnterToContinue,nl,
+        play
+    ).
+
+% imprime o menu dos modos do puzzle
+printPuzzleModesMenu:-
+	clearScreen,
+	printHeader,
+	write('='), nl,
+	write('=   1. Choose an existing puzzle'), nl,
+	write('=   2. Enter a new puzzle'), nl,
+	write('=   3. Back'), nl,
+	write('='), nl,
+	write('=========================================================================================================================================='), nl,
+	write('Choose an option:'), nl.
+
+% menu dos modos do puzzle
+puzzleModesMenu:-
+	printPuzzleModesMenu,
+    getChar(Input),
+	(
+        Input = '1' -> clearScreen, choosePuzzleMenu;
+        Input = '2' -> clearScreen, write('Comming soon!');
+        Input = '3' -> mainMenu,!;
+
+		nl, write('Invalid input!'), nl,
+		pressEnterToContinue,nl,
+        play
+    ).
+
+% imprime o menu dos modos do puzzle
+printChoosePuzzleMenu:-
+	clearScreen,
+	printHeader,
+	write('='), nl,
+    write('=   0. Back'), nl,
+	write('=   1. R x GR = BG'), nl,
+	write('=   2. B x BG = RRR'), nl,
+	write('=   3. G x GB = BRG'), nl,
+    write('=   4. R x BR = BGB'), nl,
+	write('=   5. B x RG = RRG'), nl,
+	write('=   6. GR x RG = RBR'), nl,
+    write('=   7. R x GB = BGG'), nl,
+	write('=   8. BR x RG = GBG'), nl,
+	write('=   9. GB x GR = RBB'), nl,
+    write('=   10. RB x BB = GRG'), nl,
+	write('=   11. BG x BR = GBR'), nl,
+	write('=   12. G x GR = RGG'), nl,
+    write('=   13. R x RB = GBG'), nl,
+	write('=   14. B x BR = GRR'), nl,
+	write('=   15. G x GB = BBR'), nl,
+	write('='), nl,
+	write('=========================================================================================================================================='), nl,
+	write('Choose an option:'), nl.
+
+% menu dos modos do puzzle
+choosePuzzleMenu:-
+	printChoosePuzzleMenu,
+    getChar(Input),
+	(
+        Input = '1' -> clearScreen, write('Comming soon!');
+        Input = '2' -> clearScreen, write('Comming soon!');
+        Input = '3' -> mainMenu,!;
 
 		nl, write('Invalid input!'), nl,
 		pressEnterToContinue,nl,
@@ -34,7 +99,7 @@ startGame:-
 	printHeader,
     askGameInputs(Operand1, Operand2, Result, Variables),
     crypto_product(Operand1, Operand2, Result, Variables),
-    write('Result:'),
+    write('Result:'),nl,
     write(Variables).
 
 % imprime as instruções do jogo
