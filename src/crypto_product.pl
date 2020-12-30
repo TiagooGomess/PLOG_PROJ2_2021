@@ -9,11 +9,8 @@ generate_multipliers(Num, [X | Tail]) :-
     Tail = [Last | _],
     X is 10 * Last.
 
-crypto_product :-
-    Operand1 = [G],
-    Operand2 = [G,B],
-    Result = [B,B,R],
-    Variables = [G,B,R],
+crypto_product(Operand1, Operand2, Result, Variables) :-
+    
     domain(Variables, 1, 9),
     all_distinct(Variables),
     
@@ -42,8 +39,7 @@ crypto_product :-
     !,
 
     Operand1Result * Operand2Result #= ResultScalar,
-    labeling([], Variables),
-    write(Variables).
+    labeling([], Variables).
 
 /*# 1
     Operand1 = [R],

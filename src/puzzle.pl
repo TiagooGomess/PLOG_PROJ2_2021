@@ -2,7 +2,7 @@
 :-use_module(library(lists)).
 
 :-ensure_loaded('utils.pl').
-
+/* 
 % pergunta ao utilizador o puzzle que quer que seja resolvido;
 % Puzzle é uma lista que contém 3 listas:
 % - os dois primeiros elementos são as representações dos números que queremos multiplicar,
@@ -164,4 +164,4 @@ displaySolution(Vars):-
     nth0(2,Vars,B),
     write(R),write(' X '),write(G),write(R),
     write(' = '),write(B),write(G).
-    
+     */

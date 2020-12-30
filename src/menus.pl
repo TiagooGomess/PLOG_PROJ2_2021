@@ -1,6 +1,7 @@
 :-ensure_loaded('utils.pl').
 :-ensure_loaded('puzzle.pl').
 :-ensure_loaded('crypto_product.pl').
+:-ensure_loaded('input.pl').
 
 % imprime o menu principal
 printMainMenu:-
@@ -31,24 +32,14 @@ mainMenu:-
 startGame:-
     clearScreen,
 	printHeader,
-    %askPuzzle(Puzzle,LenList),nl,
-    %write('The puzzle is '),write(Puzzle),nl,nl,
-    %write('The len is '),write(LenList),nl,nl,
-    %Puzzle = [[R],[G,R],[B,G]],
-    %LenList = [1,2,2],
-    %solve_crypto(Puzzle,LenList,Vars),nl,nl,displaySolution(Vars),nl,nl;
-    %write('There is no solution to this puzzle!'),nl,nl.
-
-    /* Restrictions = [[0],[1,0],[2,1]],
-    LenList = [1,2,2]
-    crypto3(Restrictions,LenList,Solutions),
-    displaySolution(Solutions). */
-
-    crypto_product.
-
-
-
-
+/*     Operand1 = [G],
+    Operand2 = [G,B],
+    Result = [B,B,R],
+    Variables = [G,B,R], */
+    askGameInputs(Operand1, Operand2, Result, Variables),
+    crypto_product(Operand1, Operand2, Result, Variables),
+    write('Result:'),
+    write(Variables).
 
 % imprime as instruções do jogo
 howToPlay:-
