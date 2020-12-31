@@ -40,3 +40,21 @@ crypto_product(Operand1, Operand2, Result, Variables) :-
 
     Operand1Result * Operand2Result #= ResultScalar,
     labeling([], Variables).
+
+% Imprime uma lista de inteiros como um número inteiro
+printNumberList(List):-
+    length(List,Len),
+    printNumberList(List,Len).
+printNumberList([],0).
+printNumberList([H|T],Len):-
+    Len > 0,
+    Len1 is Len - 1,
+    write(H),
+    printNumberList(T,Len1).
+
+% Imprime no ecrã a solução do puzzle
+printResult(Operand1, Operand2, Result) :-
+    printNumberList(Operand1),write(' x '),
+    printNumberList(Operand2),write(' = '),
+    printNumberList(Result).
+

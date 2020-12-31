@@ -114,7 +114,7 @@ choosePuzzleMenu(Operand1, Operand2, Result, Variables):-
 startPuzzle(Operand1, Operand2, Result, Variables):-
     crypto_product(Operand1, Operand2, Result, Variables),
     write('Result:'),nl,
-    write(Variables).
+    printResult(Operand1, Operand2, Result).
 
 % imprime as instruções do jogo
 howToPlay:-
