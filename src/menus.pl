@@ -85,27 +85,29 @@ choosePuzzleMenu(Operand1, Operand2, Result, Variables):-
 	printChoosePuzzleMenu,
     read(Input),nl,
 	(   
-        %Input = 0 -> puzzleModesMenu(Operand1, Operand2, Result, Variables),!;
-        Input = 1 -> getPuzzle(1, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables),!;
-        Input = 2 -> getPuzzle(2, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 3 -> getPuzzle(3, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 4 -> getPuzzle(4, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 5 -> getPuzzle(5, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 6 -> getPuzzle(6, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 7 -> getPuzzle(7, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 8 -> getPuzzle(8, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 9 -> getPuzzle(9, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 10 -> getPuzzle(10, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 11 -> getPuzzle(11, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 12 -> getPuzzle(12, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 13 -> getPuzzle(13, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 14 -> getPuzzle(14, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 15 -> getPuzzle(15, Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
-        Input = 0;
-        
-		nl, write('Invalid input!'), nl,
-		pressEnterToContinue,nl,
-        choosePuzzleMenu(Operand1, Operand2, Result, Variables)
+        Input = 0 -> puzzleModesMenu(Operand1, Operand2, Result, Variables),!;
+        (
+            Input = 1 -> getPuzzle(1, Operand1, Operand2, Result, Variables);
+            Input = 2 -> getPuzzle(2, Operand1, Operand2, Result, Variables);
+            Input = 3 -> getPuzzle(3, Operand1, Operand2, Result, Variables);
+            Input = 4 -> getPuzzle(4, Operand1, Operand2, Result, Variables);
+            Input = 5 -> getPuzzle(5, Operand1, Operand2, Result, Variables);
+            Input = 6 -> getPuzzle(6, Operand1, Operand2, Result, Variables);
+            Input = 7 -> getPuzzle(7, Operand1, Operand2, Result, Variables);
+            Input = 8 -> getPuzzle(8, Operand1, Operand2, Result, Variables);
+            Input = 9 -> getPuzzle(9, Operand1, Operand2, Result, Variables);
+            Input = 10 -> getPuzzle(10, Operand1, Operand2, Result, Variables);
+            Input = 11 -> getPuzzle(11, Operand1, Operand2, Result, Variables);
+            Input = 12 -> getPuzzle(12, Operand1, Operand2, Result, Variables);
+            Input = 13 -> getPuzzle(13, Operand1, Operand2, Result, Variables);
+            Input = 14 -> getPuzzle(14, Operand1, Operand2, Result, Variables);
+            Input = 15 -> getPuzzle(15, Operand1, Operand2, Result, Variables)
+        ) -> startPuzzle(Operand1, Operand2, Result, Variables),!;
+        (
+            nl, write('Invalid input!'), nl,
+            pressEnterToContinue,nl,
+            choosePuzzleMenu(Operand1, Operand2, Result, Variables)
+        )
     ).
 
 startPuzzle(Operand1, Operand2, Result, Variables):-
