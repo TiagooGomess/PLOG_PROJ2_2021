@@ -47,7 +47,7 @@ puzzleModesMenu(Operand1, Operand2, Result, Variables):-
     read(Input),nl,
 	(
         Input = 1 -> clearScreen, choosePuzzleMenu(Operand1, Operand2, Result, Variables);
-        Input = 2 -> clearScreen, askGameInputs(Operand1, Operand2, Result, Variables);
+        Input = 2 -> clearScreen, askGameInputs(Operand1, Operand2, Result, Variables),startPuzzle(Operand1, Operand2, Result, Variables);
         Input = 3 -> mainMenu;
 
 		nl, write('Invalid input!'), nl,

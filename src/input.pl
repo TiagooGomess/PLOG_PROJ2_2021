@@ -4,6 +4,8 @@ askForInput(Question, Input) :-
     repeat,
     (
         (
+            clearScreen,
+	        printHeader,
             nl,nl,
             write(Question),nl,
             read(Input),
