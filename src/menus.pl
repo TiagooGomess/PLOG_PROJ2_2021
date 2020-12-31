@@ -110,6 +110,7 @@ choosePuzzleMenu(Operand1, Operand2, Result, Variables):-
         )
     ).
 
+% começar o jogo, sabendo (Operand1, Operand2, Result, Variables)
 startPuzzle(Operand1, Operand2, Result, Variables):-
     crypto_product(Operand1, Operand2, Result, Variables),
     write('Result:'),nl,
