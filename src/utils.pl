@@ -1,17 +1,12 @@
 :-use_module(library(lists)).
 
-% se não tivessemos o get_char(_), não conseguíamos obter o próximo input
-getChar(Input):-
-	get_char(Input),nl,
-	get_char(_).
-
 % limpa o ecrã
 clearScreen:-write('\e[2J').
 
 % espera que o user clique numa tecla para continuar
 pressEnterToContinue:-
 	write('Press <Enter> to continue.'), nl,
-	get_char(_), !.
+	get_char(_), get_char(_), !.
 
 % imprime o cabeçalho com o nome do puzzle
 printHeader:-
