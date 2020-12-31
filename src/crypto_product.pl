@@ -1,5 +1,8 @@
 :-use_module(library(clpfd)).
 
+:-ensure_loaded('utils.pl').
+:-ensure_loaded('play.pl').
+
 generate_multipliers(1, [1]).
 generate_multipliers(Num, [X | Tail]) :-
     NewNum is Num-1,    
@@ -54,7 +57,11 @@ printNumberList([H|T],Len):-
 
 % Imprime no ecrã a solução do puzzle
 printResult(Operand1, Operand2, Result) :-
+    nl,nl,
+    write('--> Result:'),nl,nl,
     printNumberList(Operand1),write(' x '),
     printNumberList(Operand2),write(' = '),
-    printNumberList(Result).
+    printNumberList(Result),nl,nl,nl,nl,
+    pressEnterToContinue,
+    play.
 
