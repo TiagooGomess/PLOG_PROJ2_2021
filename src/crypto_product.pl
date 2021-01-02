@@ -16,7 +16,7 @@ crypto_product(Operand1, Operand2, Result, Variables, Runtime) :-
 
     statistics(runtime,[Start|_]), % para calcular o runtime
     
-    domain(Variables, 1, 9),
+    domain(Variables, 0, 9),
     all_distinct(Variables),
     
     length(Operand1, LOperand1),
@@ -44,6 +44,9 @@ crypto_product(Operand1, Operand2, Result, Variables, Runtime) :-
     !,
 
     Operand1Result * Operand2Result #= ResultScalar,
+
+    ResultScalar #\= 0,
+
     labeling([], Variables),
 
     % cálculo do runtime
