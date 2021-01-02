@@ -10,7 +10,7 @@ askGameInputs(Operand1, Operand2, Result, Variables) :-
         clearScreen,
         printHeader,
         nl,nl,
-        write('Please enter a list with the template [Operand1,Operand2,Result,Variables].'),nl,
+        write('--> Please enter a list with the template [Operand1,Operand2,Result,Variables].\n--> Each element in the puzzle\'s list is by itself a list.'),nl,nl,
         read(Input),
         parseInput(Input,Operand1,Operand2,Result,Variables),!
     ).
