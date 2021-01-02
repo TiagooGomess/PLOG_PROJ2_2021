@@ -52,10 +52,6 @@ crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, Lab
 
     Operand1Result * Operand2Result #= ResultScalar,
 
-    ResultScalar #\= 0,
-
-    % TODO: assegurar que o primeiro dígito não é zero!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 
     get_runtime(PostingConstrainsTime),
 
