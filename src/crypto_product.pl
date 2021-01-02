@@ -12,11 +12,15 @@ generate_multipliers(Num, [X | Tail]) :-
     Tail = [Last | _],
     X is 10 * Last.
 
-crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime) :-
+crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime) :-   
+    
+    % ------------ declarar variáveis e domínios ----------------------------
+    domain(Variables, 0, 9),
 
     reset_timer,
-    
-    domain(Variables, 0, 9),
+
+    % ------------ restrições -----------------------------------------------
+
     all_distinct(Variables),
     
     length(Operand1, LOperand1),
@@ -47,7 +51,12 @@ crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, Lab
 
     ResultScalar #\= 0,
 
+    % TODO: assegurar que o primeiro dígito não é zero!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
     get_runtime(PostingConstrainsTime),
+
+    % ------------ pesquisa de solução ---------------------------------
 
     labeling([], Variables),
 
