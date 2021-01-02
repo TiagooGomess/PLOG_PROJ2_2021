@@ -12,7 +12,9 @@ generate_multipliers(Num, [X | Tail]) :-
     Tail = [Last | _],
     X is 10 * Last.
 
-crypto_product(Operand1, Operand2, Result, Variables) :-
+crypto_product(Operand1, Operand2, Result, Variables, Runtime) :-
+
+    statistics(runtime,[Start|_]), % para calcular o runtime
     
     domain(Variables, 1, 9),
     all_distinct(Variables),
@@ -42,7 +44,11 @@ crypto_product(Operand1, Operand2, Result, Variables) :-
     !,
 
     Operand1Result * Operand2Result #= ResultScalar,
-    labeling([], Variables).
+    labeling([], Variables),
+
+    % cálculo do runtime
+    statistics(runtime,[Stop|_]),
+    Runtime is Stop - Start. 
 
 % Imprime uma lista de inteiros como um número inteiro
 printNumberList(List):-
@@ -56,12 +62,13 @@ printNumberList([H|T],Len):-
     printNumberList(T,Len1).
 
 % Imprime no ecrã a solução do puzzle
-printResult(Operand1, Operand2, Result) :-
+printResult(Operand1, Operand2, Result, Runtime) :-
     nl,nl,
     write('--> Result:'),nl,nl,
     printNumberList(Operand1),write(' x '),
     printNumberList(Operand2),write(' = '),
     printNumberList(Result),nl,nl,nl,nl,
+    write('The puzzle was solved in '), write(Runtime), write('ms.'),nl,nl,nl,nl,
     pressEnterToContinue,
     play.
 
