@@ -17,38 +17,35 @@ crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, Lab
     % ------------ declarar variáveis e domínios ----------------------------
     domain(Variables, 0, 9),
 
+    length(Operand1, LOperand1),
+    Operand1Max is 10^LOperand1,
+    Operand1Min is 10^(LOperand1-1),
+    domain([Operand1Result], Operand1Min , Operand1Max),
+
+    length(Operand2, LOperand2),
+    Operand2Max is 10^LOperand2,
+    Operand2Min is 10^(LOperand2-1),
+    domain([Operand2Result], Operand2Min , Operand2Max),
+
+    length(Result, LResult),
+    ResultMax is 10^LResult,
+    ResultMin is 10^(LResult-1),
+    domain([ResultScalar], ResultMin , ResultMax),
+
     reset_timer,
 
     % ------------ restrições -----------------------------------------------
 
     all_distinct(Variables),
     
-    length(Operand1, LOperand1),
-    generate_multipliers(LOperand1, MultipliersOp1),
-    !,
-    Operand1Max is 10^LOperand1,
-    Operand1Min is 10^(LOperand1-1),
-    domain([Operand1Result], Operand1Min , Operand1Max),
+    generate_multipliers(LOperand1, MultipliersOp1),!,
     scalar_product(MultipliersOp1, Operand1, #=, Operand1Result),
 
-    !,
-    length(Operand2, LOperand2),
-    generate_multipliers(LOperand2, MultipliersOp2),
-    !,
-    Operand2Max is 10^LOperand2,
-    Operand2Min is 10^(LOperand2-1),
-    domain([Operand2Result], Operand2Min , Operand2Max),
+    !,generate_multipliers(LOperand2, MultipliersOp2),!,
     scalar_product(MultipliersOp2, Operand2, #=, Operand2Result),
 
-    !,
-    length(Result, LResult),
-    generate_multipliers(LResult, MultipliersResult),
-    !,
-    ResultMax is 10^LResult,
-    ResultMin is 10^(LResult-1),
-    domain([ResultScalar], ResultMin , ResultMax),
-    scalar_product(MultipliersResult, Result, #=, ResultScalar),
-    !,
+    !,generate_multipliers(LResult, MultipliersResult),!,
+    scalar_product(MultipliersResult, Result, #=, ResultScalar),!,
 
     Operand1Result * Operand2Result #= ResultScalar,
 
