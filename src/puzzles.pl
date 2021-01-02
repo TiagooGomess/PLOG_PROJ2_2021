@@ -98,4 +98,7 @@ More puzzles (para testar o input de novos puzzles):
 
 -> [[A,B,C,B,C,A,D],[E,D,F,A,B,C],[G,H,F,D,C,E,E,F,F,I,I,A],[A,B,C,D,E,F,G,H,I]].
 ---> Solution: 1232317 x 476123 = 586734466991
+
+
+Usar script.py para gerar novos puzzles.
 */
