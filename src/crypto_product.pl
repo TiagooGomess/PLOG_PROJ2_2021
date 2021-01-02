@@ -27,7 +27,8 @@ crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, Lab
     generate_multipliers(LOperand1, MultipliersOp1),
     !,
     Operand1Max is 10^LOperand1,
-    domain([Operand1Result], 0 , Operand1Max),
+    Operand1Min is 10^(LOperand1-1),
+    domain([Operand1Result], Operand1Min , Operand1Max),
     scalar_product(MultipliersOp1, Operand1, #=, Operand1Result),
 
     !,
@@ -35,7 +36,8 @@ crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, Lab
     generate_multipliers(LOperand2, MultipliersOp2),
     !,
     Operand2Max is 10^LOperand2,
-    domain([Operand2Result], 0 , Operand2Max),
+    Operand2Min is 10^(LOperand2-1),
+    domain([Operand2Result], Operand2Min , Operand2Max),
     scalar_product(MultipliersOp2, Operand2, #=, Operand2Result),
 
     !,
@@ -43,7 +45,8 @@ crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, Lab
     generate_multipliers(LResult, MultipliersResult),
     !,
     ResultMax is 10^LResult,
-    domain([ResultScalar], 0 , ResultMax),
+    ResultMin is 10^(LResult-1),
+    domain([ResultScalar], ResultMin , ResultMax),
     scalar_product(MultipliersResult, Result, #=, ResultScalar),
     !,
 
