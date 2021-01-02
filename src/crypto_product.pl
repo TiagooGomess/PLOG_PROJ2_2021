@@ -68,9 +68,6 @@ printResult(Operand1, Operand2, Result, Variables, Runtime) :-
     printNumberList(Operand1),write(' x '),
     printNumberList(Operand2),write(' = '),
     printNumberList(Result),nl,nl,nl,nl,
-    
-    nl,nl,write(Variables),nl,nl,
-
     write('The puzzle was solved in '), write(Runtime), write('ms.'),nl,nl,nl,nl,
     pressEnterToContinue,
     play.

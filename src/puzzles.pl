@@ -88,3 +88,14 @@ getPuzzle(15, Operand1, Operand2, Result, Variables) :-
     Operand2 = [G,B],
     Result = [B,B,R],
     Variables = [R,G,B].
+
+
+/*
+More puzzles (para testar o input de novos puzzles):
+
+-> [[A,B,C],[D,C,B],[E,B,E,A,B,C],[A,B,C,D,E]].
+---> Solution: 375 x 457 = 171375
+
+-> [[A,B,C,B,C,A,D],[E,D,F,A,B,C],[G,H,F,D,C,E,E,F,F,I,I,A],[A,B,C,D,E,F,G,H,I]].
+---> Solution: 1232317 x 476123 = 586734466991
+*/
