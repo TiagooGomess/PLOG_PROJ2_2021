@@ -105,7 +105,7 @@ startPuzzle(Operand1, Operand2, Result, Variables):-
     crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime) -> (
 		clearScreen,
 		printHeader,
-		printResult(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime),!
+		printResult(Operand1, Operand2, Result, PostingConstrainsTime, LabelingTime),!
 	);
 	clearScreen,
 	printHeader,

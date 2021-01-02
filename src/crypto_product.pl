@@ -76,7 +76,7 @@ printNumberList([H|T],Len):-
     printNumberList(T,Len1).
 
 % Imprime no ecrã a solução do puzzle
-printResult(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime) :-
+printResult(Operand1, Operand2, Result, PostingConstrainsTime, LabelingTime) :-
     nl,nl,
     write('--> Result:'),nl,nl,
     printNumberList(Operand1),write(' x '),
