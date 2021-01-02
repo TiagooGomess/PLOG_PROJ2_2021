@@ -102,10 +102,17 @@ choosePuzzleMenu(Operand1, Operand2, Result, Variables):-
 
 % começar o jogo, sabendo (Operand1, Operand2, Result, Variables)
 startPuzzle(Operand1, Operand2, Result, Variables):-
-    crypto_product(Operand1, Operand2, Result, Variables, Runtime),
-    clearScreen,
+    crypto_product(Operand1, Operand2, Result, Variables, Runtime) -> (
+		clearScreen,
+		printHeader,
+		printResult(Operand1, Operand2, Result, Variables, Runtime),!
+	);
+	clearScreen,
 	printHeader,
-    printResult(Operand1, Operand2, Result, Runtime).
+	nl,nl,write('There is no solution to this problem!'),nl,nl,nl,nl,
+	pressEnterToContinue,
+    play.
+    
 
 % imprime as instruções do jogo
 howToPlay:-
