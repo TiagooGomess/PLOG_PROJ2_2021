@@ -32,3 +32,12 @@ isListOfVariables([H|T],Len):-
     Len1 is Len-1,
     var(H),
     isListOfVariables(T,Len1).
+
+reset_timer:-
+    statistics(total_runtime, _).
+
+get_runtime(T):-
+    statistics(total_runtime,[_,T]).
+
+print_time(Msg, T):-
+    write(Msg), write(T), write('ms'), nl.

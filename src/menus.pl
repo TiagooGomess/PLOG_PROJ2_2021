@@ -102,10 +102,10 @@ choosePuzzleMenu(Operand1, Operand2, Result, Variables):-
 
 % começar o jogo, sabendo (Operand1, Operand2, Result, Variables)
 startPuzzle(Operand1, Operand2, Result, Variables):-
-    crypto_product(Operand1, Operand2, Result, Variables, Runtime) -> (
+    crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime) -> (
 		clearScreen,
 		printHeader,
-		printResult(Operand1, Operand2, Result, Variables, Runtime),!
+		printResult(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime),!
 	);
 	clearScreen,
 	printHeader,

@@ -12,9 +12,9 @@ generate_multipliers(Num, [X | Tail]) :-
     Tail = [Last | _],
     X is 10 * Last.
 
-crypto_product(Operand1, Operand2, Result, Variables, Runtime) :-
+crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime) :-
 
-    statistics(runtime,[Start|_]), % para calcular o runtime
+    reset_timer,
     
     domain(Variables, 0, 9),
     all_distinct(Variables),
@@ -47,11 +47,14 @@ crypto_product(Operand1, Operand2, Result, Variables, Runtime) :-
 
     ResultScalar #\= 0,
 
+    get_runtime(PostingConstrainsTime),
+
     labeling([], Variables),
 
-    % cálculo do runtime
-    statistics(runtime,[Stop|_]),
-    Runtime is Stop - Start. 
+    get_runtime(LabelingTime),
+    nl,nl,write('--> Statistics:'), nl,nl,
+    fd_statistics.
+
 
 % Imprime uma lista de inteiros como um número inteiro
 printNumberList(List):-
@@ -65,13 +68,15 @@ printNumberList([H|T],Len):-
     printNumberList(T,Len1).
 
 % Imprime no ecrã a solução do puzzle
-printResult(Operand1, Operand2, Result, Variables, Runtime) :-
+printResult(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime) :-
     nl,nl,
     write('--> Result:'),nl,nl,
     printNumberList(Operand1),write(' x '),
     printNumberList(Operand2),write(' = '),
     printNumberList(Result),nl,nl,nl,nl,
-    write('The puzzle was solved in '), write(Runtime), write('ms.'),nl,nl,nl,nl,
+    write('--> Statistics:'), nl,nl,
+    print_time('Posting Constraints: ',PostingConstrainsTime),
+    print_time('Labeling Time: ',LabelingTime),nl,nl,nl,nl,
     pressEnterToContinue,
     play.
 
