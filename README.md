@@ -10,7 +10,7 @@ Second Project of PLOG (MIEIC 3rd year / 1st semester)
 
 2. Follow the menus and choose between solving a pre-made puzzle or to enter a new puzzle, use the Python script to generate the puzzle in prolog ready for input.
 
-#### How to generate puzzles using the python script
+### How to generate puzzles using the python script
 
 1. In the terminal, enter the command `python3 script.pl`
 2. Enter the first operand
