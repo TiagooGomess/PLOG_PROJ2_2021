@@ -3,6 +3,8 @@
 :-ensure_loaded('utils.pl').
 :-ensure_loaded('play.pl').
 
+% gera multiplicadores baseados no tamanho dos operandos
+% (e.g.Operando = RGB, Multiplicadores = [100,10,1])
 generate_multipliers(1, [1]).
 generate_multipliers(Num, [X | Tail]) :-
     NewNum is Num-1,    
@@ -12,6 +14,7 @@ generate_multipliers(Num, [X | Tail]) :-
     Tail = [Last | _],
     X is 10 * Last.
 
+% puzzle solver
 crypto_product(Operand1, Operand2, Result, Variables, PostingConstrainsTime, LabelingTime) :-   
     
     % ------------ declarar variáveis e domínios ----------------------------
