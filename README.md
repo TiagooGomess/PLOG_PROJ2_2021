@@ -1,5 +1,14 @@
 # PLOG_PROJ2_2021
+
 Second Project of PLOG (MIEIC 3rd year / 1st semester)
+
+## Usage
+
+### How to run the solver
+
+1. In SICStus Prolog, consult the file 'play.pl' in the src directory(File -> Consult... -> src/play.pl; or in the sicstus terminal: `[play].`), and the solver will start automatically.
+
+2. Follow the menus and choose between solving a pre-made puzzle or to enter a new puzzle, use the Python script to generate the puzzle in prolog ready for input.
 
 ## Useful Links
 
